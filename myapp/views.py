@@ -50,23 +50,23 @@ def login_request(request):
             if role=='Accounts':
                 request.session['username'] = username
                 us = request.session['username']
-                import myapp
-                #bgs = myapp.models.background_color.objects.all().filter(username=us)
-                #bg = myapp.models.background_color.objects.all().filter(username=us).exists()
-                #a = []
-                #if bg == True:
-                    #a.append(us)
-                #else:
-                    #a.append('f')
+                import accounts
+                bgs = accounts.models.background_color.objects.all().filter(username=us)
+                bg = accounts.models.background_color.objects.all().filter(username=us).exists()
+                a = []
+                if bg == True:
+                    a.append(us)
+                else:
+                    a.append('f')
 
                 context = {
-                    #'bg': bgs,
-                    #'us': us,
-                    #'th_us': a[0],
+                    'bg': bgs,
+                    'us': us,
+                    'th_us': a[0],
                     'user': loginobj,
                     'name' : us
                 }
-                return render(request,'user/userindex.html', context)
+                return render(request,'branches/branch11/accounts/accounts_dash_board.html', context)
 
             if role=='Restaurant':
                 request.session['username'] = username

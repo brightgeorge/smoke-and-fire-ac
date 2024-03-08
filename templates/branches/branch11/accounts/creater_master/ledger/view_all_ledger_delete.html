@@ -1,0 +1,516 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>Open Bright A/C S</title>
+  <!-- loader-->
+  <link href="{% static 'admindashboard//assets/css/pace.min.css' %}" rel="stylesheet"/>
+  <script src="{% static 'admindashboard//assets/js/pace.min.js' %}"></script>
+  <!--favicon-->
+  <link rel="icon" href="../assets/images/favicon.ico' %}" type="image/x-icon">
+  <!-- Vector CSS -->
+  <link href="{% static 'admindashboard//assets/plugins/vectormap/jquery-jvectormap-2.0.2.css' %}" rel="stylesheet"/>
+  <!-- simplebar CSS-->
+  <link href="{% static 'admindashboard//assets/plugins/simplebar/css/simplebar.css' %}" rel="stylesheet"/>
+  <!-- Bootstrap core CSS-->
+  <link href="{% static 'admindashboard//assets/css/bootstrap.min.css' %}" rel="stylesheet"/>
+  <!-- animate CSS-->
+  <link href="{% static 'admindashboard//assets/css/animate.css' %}" rel="stylesheet" type="text/css"/>
+  <!-- Icons CSS-->
+  <link href="{% static 'admindashboard//assets/css/icons.css' %}" rel="stylesheet" type="text/css"/>
+  <!-- Sidebar CSS-->
+  <link href="{% static 'admindashboard//assets/css/sidebar-menu.css' %}" rel="stylesheet"/>
+  <!-- Custom Style-->
+  <link href="{% static 'admindashboard//assets/css/app-style.css' %}" rel="stylesheet"/>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+  <!-- Button trigger modal -->
+
+
+
+<script>
+function exportTableToExcel(tableID, filename = ''){
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+    // Specify file name
+    filename = filename?filename+'.xls':'excel_data.xls';
+
+    // Create download link element
+    downloadLink = document.createElement("a");
+
+    document.body.appendChild(downloadLink);
+
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['\ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+        // Setting the file name
+        downloadLink.download = filename;
+
+        //triggering the function
+        downloadLink.click();
+    }
+}</script>
+
+
+</head>
+
+{% if us == th_us %}
+{% for i in bg %}
+<body class="{{i.theme_name}}" style="background-color:{{i.theme_name}}">
+{% endfor %}
+{% else %}
+<body class="bg-theme bg-theme1">
+{% endif %}
+
+
+<!-- start loader -->
+   <div id="pageloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner" ><div class="loader"></div></div></div></div>
+   <!-- end loader -->
+
+<!-- Start wrapper-->
+ <div id="wrapper">
+
+  <!--Start sidebar-wrapper-->
+   <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+     <div class="brand-logo">
+      <a href="index.html">
+       <img src="{% static 'admindashboard/assets/images/logo-icon.png' %}" class="logo-icon" alt="logo icon">
+       <h5 class="logo-text">Open Bright A/C S A/C s</h5>
+     </a>
+   </div>
+   <ul class="sidebar-menu do-nicescrol">
+      <li class="sidebar-header"><h6 style="text-decoration:underline;">.........* PERFECT PG 1 *.........</h6></li>
+
+             <li>
+        <a href="{% url 'accounts_dash_board_ob_ch11' %}">
+          <i class="zmdi zmdi-book"></i> <span>A/C S DASHBOARD</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="{% url 'restaurantindex' %}">
+          <i class="zmdi zmdi-view-dashboard"></i> <span>RESTAURANT</span>
+        </a>
+      </li>
+
+       <li>
+        <a href="{% url 'in_exp_items_entry11' %}">
+          <i class="zmdi zmdi-case-check"></i> <span>Daily Inc Exp Form</span>
+        </a>
+      </li>
+
+                     <li id="mycolor">
+       <div class="dropdown show" id="mycolor">
+  <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink mycolor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     <i class="zmdi zmdi-balance-wallet" id="mycolor"></i> <span id="mycolor" style="color:white;font-size:12px;">INCOME EXPENCE Reports</span>
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink mycolor">
+    <a class="dropdown-item btn-warning" href="{% url 'monthly_reports_choose_months11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Monthly Detailed</span></a>
+    <a class="dropdown-item btn-success" href="{% url 'single_monthly_reports_choose_months11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Single Monthly Detailed</span></a>
+
+  </div>
+</div>
+       </li>
+
+              <li id="mycolor">
+       <div class="dropdown show" id="mycolor">
+  <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink mycolor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     <i class="zmdi zmdi-format-list-bulleted" id="mycolor"></i> <span id="mycolor" style="color:white">Detailed Reports</span>
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink mycolor">
+    <a class="dropdown-item btn-danger" href="{% url 'daily_detailed11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Daily Detailed</span></a>
+    <a class="dropdown-item btn-success" href="{% url 'monthly_detailed11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Monthly Detailed</span></a>
+       <a class="dropdown-item btn-warning" href="{% url 'yearly_detailed11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Yearly Detailed</span></a>
+
+  </div>
+</div>
+       </li>
+
+                     <li id="mycolor">
+       <div class="dropdown show" id="mycolor">
+  <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink mycolor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     <i class="zmdi zmdi-format-list-bulleted" id="mycolor"></i> <span id="mycolor" style="color:white">Ledger Reports</span>
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink mycolor">
+     <a class="dropdown-item btn-danger" href="{% url 'daily_ledger_based_reports11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Daily ledger report </span></a>
+<a class="dropdown-item btn-success" href="{% url 'monthly_ledger_based_reports11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Monthly ledger report </span></a>
+
+      <a class="dropdown-item btn-warning" href="{% url 'ledger_based_reports11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Yearly Ledger Reports</span></a>
+
+
+  </div>
+</div>
+       </li>
+
+                     <li id="mycolor">
+       <div class="dropdown show" id="mycolor">
+  <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink mycolor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     <i class="zmdi zmdi-format-list-bulleted" id="mycolor"></i> <span id="mycolor" style="color:white">A/C S Book Reports</span>
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink mycolor">
+      <a class="dropdown-item btn-danger" href="{% url 'daily_accounts_book_based_reports11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Daily A/C S Book Based</span></a>
+
+     <a class="dropdown-item btn-success" href="{% url 'monthly_accounts_book_based_reports11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Monthly A/C S Book Based</span></a>
+
+      <a class="dropdown-item btn-warning" href="{% url 'accounts_book_based_reports11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Yearly A/C S Book Based</span></a>
+
+
+  </div>
+</div>
+       </li>
+
+                     <li id="mycolor">
+       <div class="dropdown show" id="mycolor">
+  <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink mycolor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     <i class="zmdi zmdi-format-list-bulleted" id="mycolor"></i> <span id="mycolor" style="color:white">Item Wise Reports</span>
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink mycolor">
+
+      <a class="dropdown-item btn-danger" href="{% url 'daily_item_based_reports11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Daily Item Based</span></a>
+
+      <a class="dropdown-item btn-success" href="{% url 'monthly_item_based_reports11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Monthly Item Based</span></a>
+ <a class="dropdown-item btn-warning" href="{% url 'item_based_reports11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Yearly Item Based</span></a>
+
+  </div>
+</div>
+       </li>
+
+
+                            <li id="mycolor">
+       <div class="dropdown show" id="mycolor">
+  <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink mycolor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     <i class="zmdi zmdi-format-list-bulleted" id="mycolor"></i> <span id="mycolor" style="color:white">Category Wise Reports</span>
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink mycolor">
+
+      <a class="dropdown-item btn-danger" href="{% url 'daily_category_wise11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Daily Category Based</span></a>
+
+      <a class="dropdown-item btn-success" href="{% url 'monthly_category_based_reports11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Monthly Category Based</span></a>
+ <a class="dropdown-item btn-warning" href="{% url 'yearly_category_based_reports11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Yearly Category Based</span></a>
+
+  </div>
+</div>
+       </li>
+
+
+                            <li id="mycolor">
+       <div class="dropdown show" id="mycolor">
+  <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink mycolor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     <i class="zmdi zmdi-brush" id="mycolor"></i> <span id="mycolor" style="color:white;font-size:12px;">Creater Master</span>
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink mycolor">
+          <a class="dropdown-item btn-danger" href="{% url 'view_all_category11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Category Creater</span></a>
+    <a class="dropdown-item btn-success" href="{% url 'view_all_items11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Item Creater</span></a>
+    <a class="dropdown-item btn-warning" href="{% url 'view_all_ledger11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Ledger Creater</span></a>
+      <a class="dropdown-item btn-info" href="{% url 'view_all_accounts_book11' %}"><i class="zmdi zmdi-invert-colors"></i> <span>A/C S Book Creater</span></a>
+
+  </div>
+</div>
+       </li>
+
+      <li>
+        <a href="{% url 'logout' %}">
+          <i class="zmdi zmdi-lock"></i> <span>Logout</span>
+        </a>
+      </li>
+
+
+    </ul>
+
+   </div>
+   <!--End sidebar-wrapper-->
+
+<!--Start topbar header-->
+<header class="topbar-nav">
+ <nav class="navbar navbar-expand fixed-top">
+  <ul class="navbar-nav mr-auto align-items-center">
+    <li class="nav-item">
+      <a class="nav-link toggle-menu" href="javascript:void();">
+       <i class="icon-menu menu-icon"></i>
+     </a>
+    </li>
+    <li class="nav-item">
+      <form class="search-bar">
+        <input type="text" class="form-control" placeholder="Enter keywords">
+         <a href="javascript:void();"><i class="icon-magnifier"></i></a>
+      </form>
+    </li>
+  </ul>
+
+  <ul class="navbar-nav align-items-center right-nav-link">
+    <li class="nav-item dropdown-lg">
+      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
+      <i class="fa fa-envelope-open-o"></i></a>
+    </li>
+    <li class="nav-item dropdown-lg">
+      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
+      <i class="fa fa-bell-o"></i></a>
+    </li>
+    <li class="nav-item language">
+      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();"><i class="fa fa-flag"></i></a>
+      <ul class="dropdown-menu dropdown-menu-right">
+          <li class="dropdown-item"> <i class="flag-icon flag-icon-gb mr-2"></i> English</li>
+          <li class="dropdown-item"> <i class="flag-icon flag-icon-fr mr-2"></i> French</li>
+          <li class="dropdown-item"> <i class="flag-icon flag-icon-cn mr-2"></i> Chinese</li>
+          <li class="dropdown-item"> <i class="flag-icon flag-icon-de mr-2"></i> German</li>
+        </ul>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
+        <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar"></span>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-right">
+       <li class="dropdown-item user-details">
+        <a href="javaScript:void();">
+           <div class="media">
+             <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
+            <div class="media-body">
+            <h6 class="mt-2 user-title">Sarajhon Mccoy</h6>
+            <p class="user-subtitle">mccoy@example.com</p>
+            </div>
+           </div>
+          </a>
+        </li>
+        <li class="dropdown-divider"></li>
+        <li class="dropdown-item"><i class="icon-envelope mr-2"></i> Inbox</li>
+        <li class="dropdown-divider"></li>
+        <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Account</li>
+        <li class="dropdown-divider"></li>
+        <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
+        <li class="dropdown-divider"></li>
+        <li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</header>
+<!--End topbar header-->
+
+
+<div class="clearfix"></div>
+
+  <div class="content-wrapper">
+    <div class="container-fluid">
+
+      <div class="row mt-3">
+
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">VIEW ALL DELETED LEDGER</h5>
+
+
+                {% if messages %}
+                {% for message in messages %}
+        <div class="alert alert-{{msg}}" style="width:95%;">
+         <a href="#" class="close" data-dismiss="alert">
+            &times;
+         </a>
+         <strong>!</strong> {{message}}
+
+      </div>
+       {% endfor %}
+            {% endif %}
+
+
+                 <tr>
+                    <th ><a href="{% url 'view_all_ledger11' %}"> <button class="mybutton button1" style="background-color:red;color:white;"><span style="background-color:red;color:white;"><= Back</span> </button></a></th>
+                     <th style="text-align:center" bgcolor="blue"><button onclick="exportTableToExcel ('tbldata','Open Bright A/C S - Detailed Report of JUNE')">download</button></th>
+                 <th><button onclick="window.print()">Print</button></th>
+                     <th ><a href="{% url 'create_new_ledger11' %}"> <button class="mybutton button1" style="background-color:green;color:white;">Create Ledger </button></a></th>
+
+                 </tr>
+
+           <div class="table-responsive">
+              <table class="table table-sm" id="tbldata" border="1">
+                <thead>
+                  <tr >
+                    <th scope="col" >SL NO</th>
+                    <th scope="col" >LEDGER NAME</th>
+                    <th scope="col" >CONTACT NAME</th>
+                      <th scope="col" >CONTACT NUM</th>
+                      <th scope="col" >ADDRESS</th>
+                      <th scope="col">flag</th>
+                    <th scope="col" >ENTERED BY</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+
+{% for i in ledger %}
+                    <tr>
+                        <th scope="row" rowspan="2">{{ forloop.counter }}</th>
+                        <th scope="row">
+
+                              <div class="dropdown">
+             <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+              <i class="icon-options1" >{{ i.ledger_name }}</i>
+             </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                  <a class="dropdown-item" href="{% url 'update_ledger11' id=i.id %}">Update Selected Entry</a>
+                <a class="dropdown-item" href="{% url 'delete_ledger11' id=i.id %}">Delete Selected Entry</a>
+
+               </div>
+              </div>
+
+                        </th>
+                        <th scope="row">{{i.contact_person_name}}</th>
+                         <th scope="row">{{i.contact_person_mob}}</th>
+                        <th scope="row">{{i.address}}</th>
+                        <th scope="row">{{i.flag}}</th>
+
+                        </tr>
+                    <tr>
+
+                        <th scope="row" colspan="6">
+                            <span style="background-color:green;"> {{i.created_by}} {{i.cb_date}} ||
+
+                           <span style="background-color:orange;"> {{i.updated_by}} {{i.ub_date}} || </span>
+                           <span style="background-color:red;"> {{i.deleted_by}} {{i.db_date}} </span>
+                        </th>
+                    </tr>
+
+{% endfor %}
+
+
+
+
+
+                <!-- --------------------------------------------------------------- -->
+
+
+
+
+                </tbody>
+              </table>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div><!--End Row-->
+
+
+
+
+
+
+     <!--start overlay-->
+        <div class="overlay toggle-menu"></div>
+      <!--end overlay-->
+
+    </div>
+    <!-- End container-fluid-->
+
+    </div><!--End content-wrapper-->
+   <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+
+   <!--Start footer-->
+   <footer class="footer">
+      <div class="container">
+        <div class="text-center">
+          <a href="http://hbct.in/">Powred © HBCT.IN</a>
+        </div>
+      </div>
+    </footer>
+   <!--End footer-->
+
+   <!--start color switcher-->
+   <div class="right-sidebar">
+    <div class="switcher-icon">
+      <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+    </div>
+    <div class="right-sidebar-content">
+
+        <p class="mb-0">Settings</p>
+      <hr>
+
+      <ul>
+
+
+
+
+          <li style="background-color:red;border:1px solid white;margin-top:5px;"><a href="create_category.html"></a></li>
+
+
+      </ul>
+
+
+      <p class="mb-0">Gaussion Texture</p>
+      <hr>
+
+      <ul class="switcher">
+        <li id="theme1"></li>
+        <li id="theme2"></li>
+        <li id="theme3"></li>
+        <li id="theme4"></li>
+        <li id="theme5"></li>
+        <li id="theme6"></li>
+      </ul>
+
+      <p class="mb-0">Gradient Background</p>
+      <hr>
+
+      <ul class="switcher">
+        <li id="theme7"></li>
+        <li id="theme8"></li>
+        <li id="theme9"></li>
+        <li id="theme10"></li>
+        <li id="theme11"></li>
+        <li id="theme12"></li>
+      <li id="theme13"></li>
+        <li id="theme14"></li>
+        <li id="theme15"></li>
+      </ul>
+
+     </div>
+   </div>
+  <!--end color switcher-->
+
+  </div><!--End wrapper-->
+
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="{% static 'admindashboard/assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'admindashboard/assets/js/popper.min.js' %}"></script>
+  <script src="{% static 'admindashboard/assets/js/bootstrap.min.js' %}"></script>
+
+ <!-- simplebar js -->
+  <script src="{% static 'admindashboard/assets/plugins/simplebar/js/simplebar.js' %}"></script>
+  <!-- sidebar-menu js -->
+  <script src="{% static 'admindashboard/assets/js/sidebar-menu.js' %}"></script>
+
+  <!-- Custom scripts -->
+  <script src="{% static 'admindashboard/assets/js/app-script.js' %}"></script>
+
+
+</body>
+</html>
+

@@ -1,0 +1,869 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>Open Bright A/C S</title>
+  <!-- loader-->
+  <link href="{% static 'admindashboard/assets/css/pace.min.css' %}" rel="stylesheet"/>
+  <script src="{% static 'admindashboard/assets/js/pace.min.js' %}"></script>
+  <!--favicon-->
+  <link rel="icon" href="{% static 'admindashboard/assets/images/favicon.ico' %}" type="image/x-icon">
+  <!-- simplebar CSS-->
+  <link href="{% static 'admindashboard/assets/plugins/simplebar/css/simplebar.css' %}" rel="stylesheet"/>
+  <!-- Bootstrap core CSS-->
+  <link href="{% static 'admindashboard/assets/css/bootstrap.min.css' %}" rel="stylesheet"/>
+  <!-- animate CSS-->
+  <link href="{% static 'admindashboard/assets/css/animate.css' %}" rel="stylesheet" type="text/css"/>
+  <!-- Icons CSS-->
+  <link href="{% static 'admindashboard/assets/css/icons.css' %}" rel="stylesheet" type="text/css"/>
+  <!-- Sidebar CSS-->
+  <link href="{% static 'admindashboard/assets/css/sidebar-menu.css' %}" rel="stylesheet"/>
+  <!-- Custom Style-->
+  <link href="{% static 'admindashboard/assets/css/app-style.css' %}" rel="stylesheet"/>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script
+  src="https://code.jquery.com/jquery-3.6.3.min.js"
+  integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+  crossorigin="anonymous"></script>
+</style>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+  <!-- Button trigger modal -->
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+function exportTableToExcel(tableID, filename = ''){
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+    // Specify file name
+    filename = filename?filename+'.xls':'excel_data.xls';
+
+    // Create download link element
+    downloadLink = document.createElement("a");
+
+    document.body.appendChild(downloadLink);
+
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['\ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+        // Setting the file name
+        downloadLink.download = filename;
+
+        //triggering the function
+        downloadLink.click();
+    }
+}</script>
+
+
+    <script>
+        var e = document.createEvent("MouseEvents");
+e.initMouseEvent("mousedown", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+$("#dropdown").get(0).dispatchEvent(e);
+
+
+        document.addEventListener('DOMContentLoaded', function(){
+    document.getElementById('dropdown').focus();
+}, false);
+
+
+                document.addEventListener('DOMContentLoaded', function(){
+    document.getElementById('dropdowna').focus();
+}, false);
+
+    </script>
+
+
+
+
+
+</head>
+
+
+<body class="bg-theme bg-theme1">
+
+
+
+<!-- start loader -->
+   <div id="pageloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner" ><div class="loader"></div></div></div></div>
+   <!-- end loader -->
+
+<!-- Start wrapper-->
+ <div id="wrapper">
+
+ <!--Start sidebar-wrapper-->
+   <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+     <div class="brand-logo">
+      <a href="index.html">
+       <img src="{% static 'admindashboard/assets/images/logo-icon.png' %}" class="logo-icon" alt="logo icon">
+       <h5 class="logo-text" style="text-transform: lowercase;">
+           <span style="text-transform: lowercase;font-size:35px;color:#ee7911;">g</span>
+           <span style="text-transform: lowercase;font-size:25px;color:#ee7911;">Inspection</span>
+       </h5>
+     </a>
+   </div>
+   <ul class="sidebar-menu do-nicescrol">
+
+       <li class="sidebar-header">MAIN NAVIGATION</li>
+
+
+
+      <li>
+        <a href="{% url 'logout' %}">
+          <i class="zmdi zmdi-lock"></i> <span>Logout</span>
+        </a>
+      </li>
+
+
+    </ul>
+
+   </div>
+   <!--End sidebar-wrapper-->
+
+
+<!--Start topbar header-->
+<header class="topbar-nav">
+ <nav class="navbar navbar-expand fixed-top">
+  <ul class="navbar-nav mr-auto align-items-center">
+    <li class="nav-item">
+      <a class="nav-link toggle-menu" href="javascript:void();">
+       <i class="icon-menu menu-icon"></i>
+     </a>
+    </li>
+    <li class="nav-item">
+      <form class="search-bar">
+        <input type="text" class="form-control" placeholder="Enter keywords">
+         <a href="javascript:void();"><i class="icon-magnifier"></i></a>
+      </form>
+    </li>
+  </ul>
+
+  <ul class="navbar-nav align-items-center right-nav-link">
+    <li class="nav-item dropdown-lg">
+      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
+      <i class="fa fa-envelope-open-o"></i></a>
+    </li>
+    <li class="nav-item dropdown-lg">
+      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
+      <i class="fa fa-bell-o"></i></a>
+    </li>
+    <li class="nav-item language">
+      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();"><i class="fa fa-flag"></i></a>
+      <ul class="dropdown-menu dropdown-menu-right">
+          <li class="dropdown-item"> <i class="flag-icon flag-icon-gb mr-2"></i> English</li>
+          <li class="dropdown-item"> <i class="flag-icon flag-icon-fr mr-2"></i> French</li>
+          <li class="dropdown-item"> <i class="flag-icon flag-icon-cn mr-2"></i> Chinese</li>
+          <li class="dropdown-item"> <i class="flag-icon flag-icon-de mr-2"></i> German</li>
+        </ul>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
+        <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar"></span>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-right">
+       <li class="dropdown-item user-details">
+        <a href="javaScript:void();">
+           <div class="media">
+             <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
+            <div class="media-body">
+            <h6 class="mt-2 user-title">Sarajhon Mccoy</h6>
+            <p class="user-subtitle">mccoy@example.com</p>
+            </div>
+           </div>
+          </a>
+        </li>
+        <li class="dropdown-divider"></li>
+        <li class="dropdown-item"><i class="icon-envelope mr-2"></i> Inbox</li>
+        <li class="dropdown-divider"></li>
+        <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Account</li>
+        <li class="dropdown-divider"></li>
+        <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
+        <li class="dropdown-divider"></li>
+        <li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</header>
+<!--End topbar header-->
+<div class="clearfix"></div>
+
+  <div class="content-wrapper">
+    <div class="container-fluid">
+
+    <div class="row mt-0">
+      <div class="col-lg-12" style="margin-left:auto;margin-right:auto;">
+         <div class="card">
+           <div class="card-body">
+		  <!--<a href=""> <button class="mybutton button1">X Close</button></a>-->
+           <div class="card-title">VIEW ALL SCANNED DATA  </div>
+
+
+                {% if messages %}
+                {% for message in messages %}
+        <div class="alert {{message_bg }} style="width:95%;">
+         <a href="#" class="close" data-dismiss="alert">
+            &times;
+         </a>
+         <strong>!</strong> {{message}}
+
+      </div>
+       {% endfor %}
+               {% endif %}
+
+
+
+           <hr>
+            <form autocomplete="off" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+
+                <div class="form-group">
+
+                <input type="text" class="autocomplete form-control col-lg-10" id="myInput" placeholder=" ; Enter Particulars" style="display:inline;" name="myte" required>
+
+
+                <label></label>
+                <input type="text" class="autocomplete form-control col-lg-1" id="input-12" placeholder="Enter SPERATOR LIKE ; , /" style="display:inline;" name="sep" required>
+<label></label>
+
+
+
+			</div>
+
+
+           <div class="form-group">
+            <button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i> Save</button>
+          </div>
+          </form>
+         </div>
+         </div>
+      </div>
+
+
+    </div><!--End Row-->
+
+
+
+
+
+
+
+
+<!--
+
+
+                <div class="row mt-3">
+
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"> STORE SCANNED DATA FORM </h5>
+
+
+                 <tr>
+
+
+
+                 <th><button onclick="window.print()">Print</button></th>
+                     <th ><a href=""> <button class="mybutton button1" style="background-color:green;color:white;">DETAILED REPORT </button></a></th>
+
+                     <th ><a href=""> <button class="mybutton button1" style="background-color:red;color:white;"><span style="background-color:red;color:white;">DELETED ENTRYS</span> </button></a></th>
+                 </tr>
+
+
+
+
+
+<br><br>
+
+
+
+                  <form autocomplete="off" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+			<div class="form-group">
+
+               <select id="ledg" class="col-lg-4 form-control" style="display:inline;" name="mdata" required>
+					<option style="background-color:white;">Heads</option>
+
+                   <option value="Po.no/GRN" >Po.no/GRN </option>
+                      <option value="Fabric Code" >Fabric Code </option>
+                      <option value="Roll no" >Roll no </option>
+                      <option value="Shade/Color" >Shade/Color </option>
+
+
+				</select>
+
+
+                <label></label>
+
+                <select id="ledg" class="col-lg-4 form-control" style="display:inline;" name="mvalue" required>
+					<option style="background-color:white;">Values</option>
+                    {% for i in sca %}
+                    <option value="{{i.values}}" >{{i.values}}</option>
+
+                    {% endfor %}
+
+
+				</select>
+
+                <label></label>
+
+
+
+			</div>
+
+
+
+
+
+           <div class="form-group">
+            <button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i> Save</button>
+          </div>
+          </form>
+
+
+
+
+
+
+
+
+            </div>
+            </div>
+          </div>
+        </div>
+      </div> --><!--End Row-->
+
+
+
+
+
+
+
+
+<!--
+
+      {% for i in mdata %}
+
+
+          <div class="dropdown">
+             <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+              <i class="icon-options1" style="background-color:red;border:1px solid green;">manage</i>
+             </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="{% url 'scan_manual_delete' id=i.id %}">Delete Selected Entry</a>
+
+               </div>
+              </div>
+
+              <div class="form-group" style="background-color:green;border:1px white;border-style: groove;border-width: 7px;border-color: white;">
+                 <label for="input-4" class="col0-lg-1" style="margin-left:20px;">
+                      Particulars : {{i.manual_entrys}} || Head  : {{i.head}} || Type : {{i.type}}
+                  </label></br>
+              </div>
+
+
+{% endfor %}
+
+-->
+
+
+
+
+
+
+
+
+
+    <div class="row mt-3">
+      <div class="col-lg-9" style="margin-left:auto;margin-right:auto;">
+         <div class="card">
+           <div class="card-body">
+
+               {% if messages %}
+                {% for message in messages %}
+        <div class="alert alert-success" style="width:95%;">
+         <a href="#" class="close" data-dismiss="alert">
+            &times;
+         </a>
+         <strong>!</strong> {{message}}
+
+      </div>
+       {% endfor %}
+            {% endif %}
+
+
+           <hr>
+            <form action="{% url 'user_regi' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+
+                <div class="form-group">
+
+				<label for="input-4" class="col-lg-3">GRN/PO.NO</label>
+				<input type="text" class="form-control col-lg-2" id="input-4" value="{{sca.0}}" style="display:inline;" name="username" required>
+
+				<label for="input-4" class="col-lg-2"></label>
+
+				<label for="input-15" class="col-lg-2">ROLL NO</label>
+				<input type="text" class="form-control col-lg-2" id="input-15" value="{{sca.1}}" style="display:inline;" name="password" required>
+
+			</div>
+
+
+                <div class="form-group">
+
+				<label for="input-4" class="col-lg-3">ROLL ID</label>
+				<input type="text" class="form-control col-lg-2" id="input-4" value="{{sca.2}}"  style="display:inline;" name="username" required>
+
+				<label for="input-4" class="col-lg-2"></label>
+
+				<label for="input-15" class="col-lg-2">FABRIC COLOR</label>
+				<input type="text" class="form-control col-lg-2" id="input-15" value="{{sca.3}}" style="display:inline;" name="password" required>
+
+			</div>
+
+                <div class="form-group">
+
+				<label for="input-4" class="col-lg-3">RECIVED LENGTH</label>
+				<input type="text" class="form-control col-lg-2" id="input-4" value="{{sca.4}}" style="display:inline;" name="username" required>
+
+				<label for="input-4" class="col-lg-2"></label>
+
+				<label for="input-15" class="col-lg-2">RECIVED WEIGHT</label>
+				<input type="text" class="form-control col-lg-2" id="input-15" value="{{sca.5}}" style="display:inline;" name="password" required>
+
+			</div>
+
+                <div class="form-group">
+
+				<label for="input-4" class="col-lg-3">RECIVED WIDTH</label>
+				<input type="text" class="form-control col-lg-2" id="input-4" value="{{sca.6}}" style="display:inline;" name="username" required>
+
+				<label for="input-4" class="col-lg-2"></label>
+
+				<label for="input-15" class="col-lg-2">INSPECTED LENGTH</label>
+				<input type="text" class="form-control col-lg-2" id="input-15" value="{{sca.7}}" style="display:inline;" name="password" required>
+
+			</div>
+
+
+                                <div class="form-group">
+
+				<label for="input-4" class="col-lg-3">INSPECTED WIDTH</label>
+				<input type="text" class="form-control col-lg-2" id="input-4" value="{{cam}}" style="display:inline;" name="username" required>
+
+				<label for="input-4" class="col-lg-2"></label>
+
+				<label for="input-15" class="col-lg-2"> INSPECTED WEIGHT</label>
+				<input type="text" class="form-control col-lg-2" id="input-15" value="{{sca.7}}" style="display:inline;" name="password" required>
+
+			</div>
+
+
+
+                                <div class="form-group">
+
+				<label for="role" class="col-lg-3">Role</label>
+				<select id="role" class="col-lg-2 form-control" id="dropdowna" style="display:inline;" name="role" required autofocus>
+
+                    {% for i in it %}
+					<option value="{{i.name}}" id="dropdown" >{{i.name}}</option>
+                    {% endfor %}
+
+
+                    				<label for="input-4" class="col-lg-2"></label>
+
+				<label for="input-15" class="col-lg-2"> INSPECTED WEIGHT</label>
+				<input type="text" class="form-control col-lg-2" id="input-15" value="{{sca.7}}" style="display:inline;" name="password" required>
+
+
+
+
+				</select>
+
+
+			</div>
+
+
+
+
+    </br>
+
+
+          </form>
+         </div>
+         </div>
+      </div>
+
+    </div><!--End Row-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <div class="row mt-3">
+
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">VIEW ALL MANUAL ENTERED DATA </h5>
+
+
+                 <tr>
+
+
+
+                     <th style="text-align:center" bgcolor="blue"><button onclick="exportTableToExcel ('tbldata','G-Inspection - Barcode Detailed Report')">download</button></th>
+
+
+
+                 </tr>
+
+			  <div class="table-responsive">
+              <table class="table table-sm" border="1" id="tbldata">
+                <thead>
+                  <tr>
+                     <th>Sl No</th>
+                     <th>Po no GRN</th>
+                      <th>Fabric Code</th>
+                      <th>Roll no</th>
+
+                      <th>Shade Color</th>
+                     <th>Rec Length</th>
+                      <th>Rec Width</th>
+                      <th>Rec Weight</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for i in mdata %}
+
+
+
+                 <tr >
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.Po_no_GRN}}</td>
+                     <td>{{i.Fabric_Code}}</td>
+                        <td>{{i.Roll_no}}</td>
+
+                     <td>{{i.Shade_Color}}</td>
+                    <td>{{i.Rec_Length}}</td>
+                     <td>{{i.Rec_Width}}</td>
+                        <td>{{i.Rec_Weight}}</td>
+
+                    </tr>
+                  </tr>
+
+
+                {% endfor %}
+
+                </tbody>
+              </table>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div><!--End Row-->
+
+
+
+
+
+
+
+
+
+
+
+
+	<!--start overlay-->
+		  <div class="overlay toggle-menu"></div>
+		<!--end overlay-->
+
+    </div>
+    <!-- End container-fluid-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          /*create a DIV element for each matching element:*/
+          b = document.createElement("DIV");
+          /*make the matching letters bold:*/
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          /*insert a input field that will hold the current array item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          /*execute a function when someone clicks on the item value (DIV element):*/
+          b.addEventListener("click", function(e) {
+              /*insert the value for the autocomplete text field:*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+  /*execute a function when someone clicks in the document:*/
+  document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+  });
+}
+
+/*An array containing all the country names in the world:*/
+/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
+
+let countries=['My Name','20','22sdfds']
+autocomplete(document.getElementById("myInput"), countries);
+console.log(countries);
+
+function getCookie(c_name)
+{
+    if (document.cookie.length > 0)
+    {
+        c_start = document.cookie.indexOf(c_name + "=");
+        if (c_start != -1)
+        {
+            c_start = c_start + c_name.length + 1;
+            c_end = document.cookie.indexOf(";", c_start);
+            if (c_end == -1) c_end = document.cookie.length;
+            return unescape(document.cookie.substring(c_start,c_end));
+        }
+    }
+    return "";
+}
+
+$('body').ready(function(){
+  $.ajaxSetup({
+      headers: { "X-CSRFToken": getCookie("csrftoken") }
+  });
+  $('#myInput').keyup(function(){
+      $.ajax({
+          type: 'POST',
+          url: '/get_countries/',
+          success: function(data) {
+              console.log(data);
+              autocomplete(document.getElementById("myInput"), data);
+          },
+          error: function(jqXHR, exception){
+            console.log(exception);
+          },
+      });
+    });
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+   </div><!--End content-wrapper-->
+   <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+
+	<!--Start footer-->
+	<footer class="footer">
+      <div class="container">
+        <div class="text-center">
+          <a href="http://hbct.in/">Powred © HBCT.IN</a>
+        </div>
+      </div>
+    </footer>
+	<!--End footer-->
+
+	<!--start color switcher-->
+   <div class="right-sidebar">
+    <div class="switcher-icon">
+      <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+    </div>
+    <div class="right-sidebar-content">
+
+		<p class="mb-0">Settings</p>
+      <hr>
+
+      <ul>
+        <li style="background-color:red;border:1px solid white;"><a href="uom_creation.html">Create New UOM</a></li>
+        <li style="background-color:red;border:1px solid white;"><a href="create_category.html">Create New Category</a></li>
+        <li style="background-color:red;border:1px solid white;">Create New Kitchen</li>
+
+
+      </ul>
+
+      <p class="mb-0">Gaussion Texture</p>
+      <hr>
+
+      <ul class="switcher">
+        <li id="theme1"></li>
+        <li id="theme2"></li>
+        <li id="theme3"></li>
+        <li id="theme4"></li>
+        <li id="theme5"></li>
+        <li id="theme6"></li>
+      </ul>
+
+      <p class="mb-0">Gradient Background</p>
+      <hr>
+
+      <ul class="switcher">
+        <li id="theme7"></li>
+        <li id="theme8"></li>
+        <li id="theme9"></li>
+        <li id="theme10"></li>
+        <li id="theme11"></li>
+        <li id="theme12"></li>
+		<li id="theme13"></li>
+        <li id="theme14"></li>
+        <li id="theme15"></li>
+      </ul>
+
+     </div>
+   </div>
+  <!--end color switcher-->
+
+  </div><!--End wrapper-->
+
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="{% static 'admindashboard/assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'admindashboard/assets/js/popper.min.js' %}"></script>
+  <script src="{% static 'admindashboard/assets/js/bootstrap.min.js' %}"></script>
+
+ <!-- simplebar js -->
+  <script src="{% static 'admindashboard/assets/plugins/simplebar/js/simplebar.js' %}"></script>
+  <!-- sidebar-menu js -->
+  <script src="{% static 'admindashboard/assets/js/sidebar-menu.js' %}"></script>
+
+  <!-- Custom scripts -->
+  <script src="{% static 'admindashboard/assets/js/app-script.js' %}"></script>
+
+
+
+</body>
+</html>

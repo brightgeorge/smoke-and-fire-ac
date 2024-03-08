@@ -1,0 +1,27 @@
+#hroomno:hover{
+    color:red;
+}
+
+
+
+
+    .hidden {
+      position: relative;
+      font-size : 10px;
+
+      display: none;  /* hide text */
+    }
+
+    :hover .hidden {
+      display: block;    /* show text */
+    }
+
+
+    .hide {
+  display: none;
+}
+
+.myDIV:hover + .hide {
+  display: block;
+  color: red;
+}
